@@ -1,25 +1,22 @@
-# File: frontend/src/components/Sidebar.jsx
 import { useEffect, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
+import { useAuthStore } from "../store/useAuthStore";
 import SidebarSkeleton from "./skeletons/SidebarSkeleton";
 import { Users } from "lucide-react";
-import { useAuthStore } from "../store/useAuthStore";
 
 const Sidebar = () => {
   const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useChatStore();
 
-  const { onlineUsers } = useAuthStore()
+  const { onlineUsers } = useAuthStore();
   const [showOnlineOnly, setShowOnlineOnly] = useState(false);
 
   useEffect(() => {
     getUsers();
   }, [getUsers]);
 
-  const safeUsers = Array.isArray(users) ? users : [];
-
   const filteredUsers = showOnlineOnly
-    ? safeUsers.filter((user) => onlineUsers.includes(user._id))
-    : safeUsers;
+    ? users.filter((user) => onlineUsers.includes(user._id))
+    : users;
 
   if (isUsersLoading) return <SidebarSkeleton />;
 
@@ -41,13 +38,12 @@ const Sidebar = () => {
             />
             <span className="text-sm">Show online only</span>
           </label>
-          <span className="text-xs text-zinc-500">({onlineUsers.length} online)</span>
+          <span className="text-xs text-zinc-500">({onlineUsers.length - 1} online)</span>
         </div>
       </div>
 
       <div className="overflow-y-auto w-full py-3">
-        {/* Добавляем проверку, что filteredUsers является массивом перед вызовом map */}
-        {filteredUsers && Array.isArray(filteredUsers) && filteredUsers.map((user) => (
+        {filteredUsers.map((user) => (
           <button
             key={user._id}
             onClick={() => setSelectedUser(user)}
@@ -65,7 +61,7 @@ const Sidebar = () => {
               />
               {onlineUsers.includes(user._id) && (
                 <span
-                  className="absolute bottom-0 right-0 size-3 bg-green-500
+                  className="absolute bottom-0 right-0 size-3 bg-green-500 
                   rounded-full ring-2 ring-zinc-900"
                 />
               )}
@@ -81,8 +77,7 @@ const Sidebar = () => {
           </button>
         ))}
 
-        {/* Также добавляем проверку для отображения сообщения "No online users" */}
-        {filteredUsers && Array.isArray(filteredUsers) && filteredUsers.length === 0 && (
+        {filteredUsers.length === 0 && (
           <div className="text-center text-zinc-500 py-4">No online users</div>
         )}
       </div>
