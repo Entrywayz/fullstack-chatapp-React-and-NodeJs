@@ -1,6 +1,7 @@
 {
   "name": "chat-app",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "repository": "https://github.com/Entrywayz/fullstack-chatapp-React-and-NodeJs.git",
   "author": "Entrywayz <injector2281337@gmail.com>",
