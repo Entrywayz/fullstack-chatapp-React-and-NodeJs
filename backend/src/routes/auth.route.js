@@ -4,11 +4,11 @@ import { protectRoute } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.get('/users', protectRoute, getUsersForSidebar);
-router.get('/:id', protectRoute, getMessages);
-router.post('/send/:id', protectRoute, sendMessage);
+router.get('/users', getUsersForSidebar);
+router.get('/:id', getMessages);
+router.post('/send/:id', sendMessage);
 
-router.put("/update-profile", protectRoute, updateProfile);
+router.put("/update-profile", updateProfile);
 
 router.get("/check", protectRoute, checkAuth);
 
