@@ -1,4 +1,3 @@
-# File: frontend/src/components/Sidebar.jsx
 import { useEffect, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
 import SidebarSkeleton from "./skeletons/SidebarSkeleton";
