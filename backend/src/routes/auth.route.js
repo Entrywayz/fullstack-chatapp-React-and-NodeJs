@@ -4,11 +4,11 @@ import { protectRoute } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
-router.get('/users', getUsersForSidebar);
-router.get('/:id', getMessages);
-router.post('/send/:id', sendMessage);
+router.post("/signup" ,signup);
+router.post("/login",login);
+router.post("/logout", logout);
 
-router.put("/update-profile", updateProfile);
+router.put("/update-profile", protectRoute, updateProfile);
 
 router.get("/check", protectRoute, checkAuth);
 
