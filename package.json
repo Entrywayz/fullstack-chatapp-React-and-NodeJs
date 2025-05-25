@@ -2,12 +2,11 @@
   "name": "chat-app",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "repository": "https://github.com/Entrywayz/fullstack-chatapp-React-and-NodeJs.git",
+  "author": "Entrywayz <injector2281337@gmail.com>",
+  "license": "ISC",
   "scripts": {
     "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "npm run start --prefix backend"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }
